@@ -48,6 +48,7 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 - EC2 에 배포 : https://docs.google.com/presentation/d/1Iac3W91CNJJRwkFHVCDlQ5xyCSSlyQ5UmyuE5D4nah4/edit?usp=sharing
 - EC2 에 파이썬 라이브러리 설치 명령  :  $conda create -n 가상환경이름 python=3.7 numpy scipy matplotlib ipython scikit-learn pandas pillow jupyter seaborn
 
+- 스트림릿으로 긍정부정 예측하는 앱 : https://github.com/blockenters/streamlit-review-app
 
 ---- 
 Prophet 라이브러리를 리눅스에서 설치하는 방법
