@@ -47,7 +47,18 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 - Git 용어와 사용법 : https://docs.google.com/presentation/d/1u-Sj4st6Kco0_6AVvWqwqNVoR8bRcOP3luHGKhwXgKA/edit?usp=sharing
 - EC2 에 배포 : https://docs.google.com/presentation/d/1Iac3W91CNJJRwkFHVCDlQ5xyCSSlyQ5UmyuE5D4nah4/edit?usp=sharing
 - EC2 에 파이썬 라이브러리 설치 명령  :  $conda create -n 가상환경이름 python=3.7 numpy scipy matplotlib ipython scikit-learn pandas pillow jupyter seaborn
-- 
+
+
+---- 
+Prophet 라이브러리를 리눅스에서 설치하는 방법
+
+가상환경 : streamlit3.7 
+
+$ sudo yum -y install gcc gcc-c++ kernel-devel
+$ pip install cython
+$ pip install "pystan<2.18"
+$ pip install fbprophet
+
 ---
 
 ## 코랩 환경 셋팅 
