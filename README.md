@@ -51,15 +51,7 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 - 스트림릿으로 자동차 구매금액 예측하는 앱 : https://github.com/blockenters/streamlit-car-price-app
 - 스트림릿으로 긍정부정 예측하는 앱 : https://github.com/blockenters/streamlit-review-app
 
----- 
-Prophet 라이브러리를 리눅스에서 설치하는 방법
 
-가상환경 : streamlit3.7 
-
-$ sudo yum -y install gcc gcc-c++ kernel-devel
-$ pip install cython
-$ pip install "pystan<2.18"
-$ pip install fbprophet
 
 ---
 
