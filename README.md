@@ -53,6 +53,8 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 스팀 게임 데이터로 만든 웹 대시보드 예제 : http://ec2-52-78-40-92.ap-northeast-2.compute.amazonaws.com:8504/
 
+- 와인 리뷰데이터로 만든 웹 대시보드 예제 : http://ec2-3-35-234-38.ap-northeast-2.compute.amazonaws.com:8505/
+
 ---
 
 ## 코랩 환경 셋팅 
