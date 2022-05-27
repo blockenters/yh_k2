@@ -51,7 +51,7 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 - 스트림릿으로 자동차 구매금액 예측하는 앱 : https://github.com/blockenters/streamlit-car-price-app
 - 스트림릿으로 긍정부정 예측하는 앱 : https://github.com/blockenters/streamlit-review-app
 
-
+- 스팀 게임 데이터로 만든 웹 대시보드 예제 : http://ec2-52-78-40-92.ap-northeast-2.compute.amazonaws.com:8504/
 
 ---
 
