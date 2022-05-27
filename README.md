@@ -55,6 +55,8 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 와인 리뷰데이터로 만든 웹 대시보드 예제 : http://ec2-3-35-234-38.ap-northeast-2.compute.amazonaws.com:8505/
 
+- 자동차 데이터로 만든 웹 대시보드 예제 : http://3.34.190.13:8503/
+
 ---
 
 ## 코랩 환경 셋팅 
