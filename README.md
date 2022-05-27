@@ -57,6 +57,8 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 자동차 데이터로 만든 웹 대시보드 예제 : http://3.34.190.13:8503/
 
+- 국내 관광명소 데이터로 만든 웹 대시보드 예제 : http://ec2-15-165-203-115.ap-northeast-2.compute.amazonaws.com:8501/
+
 ---
 
 ## 코랩 환경 셋팅 
