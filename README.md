@@ -124,7 +124,7 @@ https://www.kaggle.com/
 
 https://www.data.go.kr/
 
-https://data.nps.or.kr/service/svc/page/intro/safezone.do
+https://data.nps.or.kr/service/svc/data/search.do
 
 https://www.incheon.go.kr/data/index
 
