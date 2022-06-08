@@ -63,6 +63,12 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 ---
 
+### 중간 프로젝트 웹 대시보드 URL 
+
+- https://docs.google.com/spreadsheets/d/1bzS5C850uxhJ0EnIcgu_54xIFqSTVxf1sbIQ9I9PzF0/edit?usp=sharing
+
+---
+
 ## 코랩 환경 셋팅 
 
 - Colab 환경 설정 방법 : https://bit.ly/34B65v1 
