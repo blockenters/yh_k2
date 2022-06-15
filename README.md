@@ -110,6 +110,12 @@ https://wikidocs.net/7014
 
 - 실습데이터2 : https://drive.google.com/file/d/1BMth--17KkjOzI2i62mCgQvtwyjnAXas/view?usp=sharing
 
+- 13 실습 Image_Gen 파일 다운로드
+
+!wget --no-check-certificate \
+    "https://storage.googleapis.com/laurencemoroney-blog.appspot.com/happy-or-sad.zip" \
+    -O "/tmp/happy-or-sad.zip"
+
 ---
 
 ### 데이터 제공 사이트들 
