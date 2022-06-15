@@ -7,7 +7,7 @@ uploaded = files.upload()
 for fn in uploaded.keys() :
   path = '/content/' + fn
   img = image.load_img(path, target_size=(300,300))
-  x = image.img_to_array(img)
+  x = image.img_to_array(img) / 255.0
 
   print(x.shape)
 
