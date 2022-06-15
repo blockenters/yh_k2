@@ -114,7 +114,7 @@ https://wikidocs.net/7014
 
 !wget --no-check-certificate "https://storage.googleapis.com/laurencemoroney-blog.appspot.com/happy-or-sad.zip" -O "/tmp/happy-or-sad.zip"
 
-- 개 고양이 사진 압축 파일 : https://www.microsoft.com/en-us/download/confirmation.aspx?id=54765
+- 개 고양이 사진 압축 파일 : https://block-edu-test.s3.ap-northeast-2.amazonaws.com/kagglecatsanddogs_5340.zip
 
 ---
 
