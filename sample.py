@@ -1,3 +1,34 @@
+import numpy as np
+from google.colab import files
+from tensorflow.keras.preprocessing import image
+
+uploaded = files.upload()
+
+for fn in uploaded.keys() :
+  path = '/content/' + fn
+  img = image.load_img(path, target_size=(300,300))
+  x = image.img_to_array(img)
+
+  print(x.shape)
+
+  x = np.expand_dims(x, axis = 0)
+
+  print(x.shape)
+
+  images = np.vstack( [x] )
+  classes = model.predict( images, batch_size = 10 )
+  
+  print(classes)
+
+  if classes[0] > 0.5 :
+    print(fn + " is a human")
+  else :
+    print(fn + " is a horse")
+
+
+
+---
+
 # 디렉토리 정보와 파일을 알려주면, 해당 디렉토리에
 # 파일을 저장하는 함수
 def save_uploaded_file(directory, file) :
