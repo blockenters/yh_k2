@@ -112,9 +112,7 @@ https://wikidocs.net/7014
 
 - 13 실습 Image_Gen 파일 다운로드
 
-!wget --no-check-certificate \
-    "https://storage.googleapis.com/laurencemoroney-blog.appspot.com/happy-or-sad.zip" \
-    -O "/tmp/happy-or-sad.zip"
+!wget --no-check-certificate "https://storage.googleapis.com/laurencemoroney-blog.appspot.com/happy-or-sad.zip" -O "/tmp/happy-or-sad.zip"
 
 ---
 
