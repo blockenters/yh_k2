@@ -116,6 +116,8 @@ https://wikidocs.net/7014
 
 - 개 고양이 사진 압축 파일 : https://block-edu-test.s3.ap-northeast-2.amazonaws.com/kagglecatsanddogs_5340.zip
 
+- 7개로 분류하는 문제 : https://block-yh-test1.s3.amazonaws.com/38_%E1%84%89%E1%85%B5%E1%86%AF%E1%84%89%E1%85%B3%E1%86%B8%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF.zip
+
 ---
 
 ### 데이터 제공 사이트들 
