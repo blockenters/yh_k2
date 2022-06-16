@@ -61,6 +61,12 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 국내 관광명소 데이터로 만든 웹 대시보드 예제 : http://ec2-15-165-203-115.ap-northeast-2.compute.amazonaws.com:8501/
 
+---
+
+### API 서버 개발
+
+- API 서버 : https://docs.google.com/presentation/d/1dsCZZ4LjywFe_H5wDFvGe4UVmiB2HiaBIdcmugTQorU/edit?usp=sharing
+
 
 
 ---
