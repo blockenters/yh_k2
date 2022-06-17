@@ -67,6 +67,7 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - API 서버 : https://docs.google.com/presentation/d/1dsCZZ4LjywFe_H5wDFvGe4UVmiB2HiaBIdcmugTQorU/edit?usp=sharing
 
+- Python 으로 MySQL 작업 : https://docs.google.com/presentation/d/1adHZUnwVZ0jA3rAO68K5MnsndpWhl9IR2q_f70wE5bQ/edit?usp=sharing
 
 
 ---
