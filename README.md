@@ -69,6 +69,9 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - Python 으로 MySQL 작업 : https://docs.google.com/presentation/d/1adHZUnwVZ0jA3rAO68K5MnsndpWhl9IR2q_f70wE5bQ/edit?usp=sharing
 
+- 포스트맨 사용법 : https://docs.google.com/presentation/d/1YVJtjcqSCC5Z6zFFE-ix8eugs_uh_vdwZmrvgx5VBKQ/edit?usp=sharing
+
+- JWT 자료 : https://nesoy.github.io/articles/2020-03/JWT
 
 ---
 
