@@ -86,6 +86,11 @@ class RecipeResource(Resource) :
 
             result_list = cursor.fetchall()
 
+            if len(result_list) == 0 :
+                cursor.close()
+                connection.close()
+                return {'error' : '레시피 아이디가 잘못되었습니다.'}, 400
+
             recipe = result_list[0]
 
             if recipe['user_id'] != user_id :
