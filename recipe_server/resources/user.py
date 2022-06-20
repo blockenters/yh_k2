@@ -162,9 +162,10 @@ class UserLoginResource(Resource) :
         if check == False :
             return {'error' : '비밀번호가 맞지 않습니다.'}
 
-        
+        access_token = create_access_token( user_info['id'] )
+
         return {'result' : 'success', 
-                'user_id' : user_info['id']}, 200
+                'access_token' : access_token}, 200
 
 
 
