@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from flask import request
+from flask_jwt_extended import create_access_token
 from flask_restful import Resource
 from mysql.connector.errors import Error
 from mysql_connection import get_connection
@@ -80,8 +81,13 @@ class UserRegisterResource(Resource) :
             connection.close()
             return {"error" : str(e)}, 503
 
+        # user_id 를 바로 보내면 안되고,
+        # JWT 로 암호화 해서 보내준다.
+        # 암호화 하는 방법
+        access_token = create_access_token(user_id)
 
-        return {'result' : 'success', 'user_id' : user_id }, 200
+        return {'result' : 'success', 
+                'access_token' : access_token }, 200
 
 
 class UserLoginResource(Resource) :
