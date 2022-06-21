@@ -1,6 +1,7 @@
+import datetime
 from http import HTTPStatus
 from flask import request
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt, jwt_required
 from flask_restful import Resource
 from mysql.connector.errors import Error
 from mysql_connection import get_connection
@@ -162,10 +163,26 @@ class UserLoginResource(Resource) :
         if check == False :
             return {'error' : '비밀번호가 맞지 않습니다.'}
 
-        access_token = create_access_token( user_info['id'] )
+        access_token = create_access_token( user_info['id'])
 
         return {'result' : 'success', 
                 'access_token' : access_token}, 200
+
+
+jwt_blacklist = set()
+
+# 로그아웃 기능을 하는 클래스
+class UserLogoutResource(Resource) :
+    @jwt_required()
+    def post(self) :
+
+        jti = get_jwt()['jti']
+        print(jti)
+        
+        jwt_blacklist.add(jti)
+
+        return {'result', 'success'}, 200
+
 
 
 
