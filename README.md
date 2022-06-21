@@ -79,7 +79,7 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 실습 2 : https://docs.google.com/presentation/d/16P5E-14EDVCuM3oWA9yWiStA6xZuWJvGjNuzFHdZdrY/edit?usp=sharing
 
-- 실습에 필요한 데이터 : https://block-edu-test.s3.ap-northeast-2.amazonaws.com/%EC%98%81%ED%99%94%EC%84%9C%EB%B9%84%EC%8A%A4_%EB%8D%B0%EC%9D%B4%ED%84%B0.zip
+- 실습에 필요한 데이터 : https://block-edu-test.s3.ap-northeast-2.amazonaws.com/movie_data.zip
 
 ---
 
