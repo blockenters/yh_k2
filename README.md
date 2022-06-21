@@ -73,6 +73,11 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - JWT 자료 : https://nesoy.github.io/articles/2020-03/JWT
 
+- 포스트맨에서 인증토큰 셋팅하는 방법 : https://docs.google.com/presentation/d/1YVJtjcqSCC5Z6zFFE-ix8eugs_uh_vdwZmrvgx5VBKQ/edit?usp=sharing
+
+- 실습 1 : https://docs.google.com/presentation/d/1QKlMbRgWOUaHxqatJGUetrf-6WSSWqdTpBZqv7FW1t4/edit?usp=sharing
+
+
 ---
 
 ## 코랩 환경 셋팅 
