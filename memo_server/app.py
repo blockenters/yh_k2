@@ -3,6 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 
 from config import Config
+from resources.follow import FollowResource
 from resources.memo import MemoInfoResource, MemoListResource
 from resources.user import UserLoginResource, UserLogoutResource, UserRegisterResource, jwt_blacklist
 
@@ -29,6 +30,7 @@ api.add_resource(UserLoginResource, '/users/login')
 api.add_resource(UserLogoutResource, '/users/logout')
 api.add_resource(MemoListResource, '/memo')
 api.add_resource(MemoInfoResource, '/memo/<int:memo_id>')
+api.add_resource(FollowResource, '/follow/<int:follow_id>')
 
 if __name__ == '__main__' :
     app.run()
