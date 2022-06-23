@@ -3,6 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from config import Config
 from resources.movie import MovieListResource, MovieResource
+from resources.rating import RatingListResource
 
 from resources.user import UserLoginResource, UserLogoutResource, UserRegisterResource, jwt_blacklist
 
@@ -28,6 +29,8 @@ api.add_resource(UserLoginResource, '/users/login')
 api.add_resource(UserLogoutResource, '/users/logout')
 api.add_resource(MovieListResource, '/movie')
 api.add_resource(MovieResource, '/movie/<int:movie_id>')
+
+api.add_resource(RatingListResource, '/rating')
 
 if __name__=="__main__" :
     app.run()
