@@ -19,7 +19,6 @@ class MovieListResource(Resource) :
         order = request.args['order']
 
         # 2. 디비로부터 영화 가져온다.
-        # 2. 디비로부터 내 메모를 가져온다.
         try :
             connection = get_connection()
 
