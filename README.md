@@ -81,6 +81,8 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 실습에 필요한 데이터 : https://block-edu-test.s3.ap-northeast-2.amazonaws.com/movie_data.zip
 
+- 실습 3 : https://docs.google.com/presentation/d/1wKcb0QAeAdUY4W8YHZZaUhARrmrYMdyWSHvhfNPZZ0U/edit?usp=sharing
+
 ---
 
 ## 코랩 환경 셋팅 
