@@ -88,6 +88,17 @@ class PostingResource(Resource) :
             return {"error" : str(e)}, 503
 
 
+        # 3. 오브젝트 디텍션을 수행해서, 레이블의 Name을 가져온다.
+        client = boto3.client('rekognition', 
+                                'ap-northeast-2',
+                                aws_access_key_id=Config.ACCESS_KEY,
+                                aws_secret_access_key = Config.SECRET_ACCESS)
+        response = client.detect_labels(Image={'S3Object' : {
+                                        'Bucket':Config.S3_BUCKET,        
+                                        'Name':new_file_name }} , 
+                                        MaxLabels=5 )
+
+
         return {'result' : 'success'}
 
 
