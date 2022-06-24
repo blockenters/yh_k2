@@ -97,6 +97,8 @@ class PostingResource(Resource) :
                                         'Bucket':Config.S3_BUCKET,        
                                         'Name':new_file_name }} , 
                                         MaxLabels=5 )
+        
+        # 4. 레이블의 Name을 가지고, 태그를 만든다!!!!!!!
 
 
         return {'result' : 'success'}
