@@ -3,6 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from config import Config
 from resources.follow import FollowResource
+from resources.like import LikeResource
 from resources.posting import PostingResource
 from resources.tag import TagSearchResource
 
@@ -34,6 +35,8 @@ api.add_resource(PostingResource, '/posting')
 api.add_resource(FollowResource, '/follow/<int:follow_id>')
 
 api.add_resource(TagSearchResource, '/posting/search/tag')
+
+api.add_resource(LikeResource, '/like/<int:posting_id>')
 
 if __name__=="__main__" :
     app.run()
