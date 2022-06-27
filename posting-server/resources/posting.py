@@ -308,6 +308,103 @@ class PostingInfoResource(Resource) :
                 return {'error' : str(e)}, 503
 
 
+            # aws rekognition 이용해서 labels 정보 가져오기
+            # 3. 오브젝트 디텍션을 수행해서, 레이블의 Name을 가져온다.
+            client = boto3.client('rekognition', 
+                                    'ap-northeast-2',
+                                    aws_access_key_id=Config.ACCESS_KEY,
+                                    aws_secret_access_key = Config.SECRET_ACCESS)
+            response = client.detect_labels(Image={'S3Object' : {
+                                            'Bucket':Config.S3_BUCKET,        
+                                            'Name':new_file_name }} , 
+                                            MaxLabels=5 )
+
+            # 기존 태그를 삭제
+            # 바뀐 태그 새로 저장
+            try :
+                connection = get_connection()
+
+                query = '''delete from tag
+                        where postingId = %s ;'''
+                record = (posting_id , )
+                cursor = connection.cursor()
+                cursor.execute(query, record)
+
+
+                for label in response['Labels'] :
+                # label['Name'] 이 값을 우리는 태그 이름으로 사용할것.
+                    
+
+                    query = '''select *
+                            from tag_name
+                            where name = %s;'''
+                    
+                    record = (label['Name'],)
+
+                    # select 문은, dictionary = True 를 해준다.
+                    cursor = connection.cursor(dictionary = True)
+
+                    cursor.execute(query, record)
+
+                    # select 문은, 아래 함수를 이용해서, 데이터를 가져온다.
+                    result_list = cursor.fetchall()
+
+                    if len(result_list) == 0 :
+                        # 태그이름을 insert 해준다.
+                        query = '''insert into tag_name
+                        (name)
+                        values
+                        (%s );'''
+                
+                        record = (label['Name'],  )
+
+                        # 3. 커서를 가져온다.
+                        cursor = connection.cursor()
+
+                        # 4. 쿼리문을 커서를 이용해서 실행한다.
+                        cursor.execute(query, record)
+
+                        # 5. 커넥션을 커밋해줘야 한다 => 디비에 영구적으로 반영하라는 뜻
+                        connection.commit()
+
+                        # 태그아이디를 가져온다.
+                        tag_name_id = cursor.lastrowid
+                        
+                    else :
+                        tag_name_id = result_list[0]['id']
+
+                    
+                    # posting_id 와 tag_name_id 가 준비되었으니
+                    # tag 테이블에 insert 한다.
+
+                    query = '''insert into tag
+                        (tagId, postingId)
+                        values
+                        (%s, %s );'''
+                
+                    record = (tag_name_id, posting_id )
+
+                    # 3. 커서를 가져온다.
+                    cursor = connection.cursor()
+
+                    # 4. 쿼리문을 커서를 이용해서 실행한다.
+                    cursor.execute(query, record)
+
+                # 5. 커넥션을 커밋해줘야 한다 => 디비에 영구적으로 반영하라는 뜻
+                connection.commit()
+
+
+                cursor.close()
+                connection.close()
+
+            except mysql.connector.Error as e :
+                print(e)
+                cursor.close()
+                connection.close()
+                return {"error" : str(e), 'error_no' : 20}, 503
+
+
+
         return {'result' : 'success'}, 200
 
 
