@@ -4,6 +4,7 @@ from flask_restful import Api
 from config import Config
 from resources.follow import FollowResource
 from resources.posting import PostingResource
+from resources.tag import TagSearchResource
 
 from resources.user import UserLoginResource, UserLogoutResource, UserRegisterResource, jwt_blacklist
 
@@ -31,6 +32,8 @@ api.add_resource(UserLogoutResource, '/users/logout')
 api.add_resource(PostingResource, '/posting')
 
 api.add_resource(FollowResource, '/follow/<int:follow_id>')
+
+api.add_resource(TagSearchResource, '/posting/search/tag')
 
 if __name__=="__main__" :
     app.run()
