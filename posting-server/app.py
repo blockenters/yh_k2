@@ -33,9 +33,7 @@ api.add_resource(UserLogoutResource, '/users/logout')
 api.add_resource(PostingResource, '/posting')
 
 api.add_resource(FollowResource, '/follow/<int:follow_id>')
-
 api.add_resource(TagSearchResource, '/posting/search/tag')
-
 api.add_resource(LikeResource, '/like/<int:posting_id>')
 
 api.add_resource(PostingInfoResource, '/posting/<int:posting_id>')
