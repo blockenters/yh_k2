@@ -87,6 +87,8 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 네이버 API 사용하기 : https://docs.google.com/presentation/d/1RTNQRhQokVycD-JS76E-jzasEzvynPyhf5xkayfBlA8/edit?usp=sharing
 
+- 온프레미스와 클라우드 : https://vision-ai.tistory.com/entry/On-Premise-%EC%99%80-Cloud-Services
+
 - 우리가 서버개발에 사용한 라이브러리 : mysql-connector-python flask-restful psycopg2-binary passlib email-validator Flask-JWT-Extended requests
 
 ---
