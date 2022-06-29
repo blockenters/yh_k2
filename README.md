@@ -91,6 +91,10 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 우리가 서버개발에 사용한 라이브러리 : mysql-connector-python flask-restful psycopg2-binary passlib email-validator Flask-JWT-Extended requests
 
+- https://pypi.org/project/pandas/#files
+
+- https://pypi.org/project/numpy/#files 
+
 ---
 
 ## 코랩 환경 셋팅 
