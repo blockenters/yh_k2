@@ -97,6 +97,18 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 ---
 
+## Android / Java
+
+- https://docs.google.com/presentation/d/18l1Xto6dEkqGrfXw_KvJ2MCVIgWqQOpI0nGImhP-oq0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/18l1Xto6dEkqGrfXw_KvJ2MCVIgWqQOpI0nGImhP-oq0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1LsaJYfV4N5x1mk8kQkKVIGh92LsHya382DfY0qS1OrQ/edit?usp=sharing
+
+
+
+---
+
 ## 코랩 환경 셋팅 
 
 - Colab 환경 설정 방법 : https://bit.ly/34B65v1 
