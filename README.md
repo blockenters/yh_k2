@@ -91,6 +91,38 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 우리가 서버개발에 사용한 라이브러리 : mysql-connector-python flask-restful psycopg2-binary passlib email-validator Flask-JWT-Extended requests
 
+- https://pypi.org/project/pandas/#files
+
+- https://pypi.org/project/numpy/#files 
+
+---
+
+## Android / Java
+
+- 윈도우즈에 자바 설치 : https://languagestory.tistory.com/11
+
+- 이클립스로 자바 개발방법 : https://mozi.tistory.com/429
+
+- 자바 문법 책 : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D_basic_%EC%9A%94%EC%95%BD%EC%A7%91.pdf
+
+- https://docs.google.com/presentation/d/18l1Xto6dEkqGrfXw_KvJ2MCVIgWqQOpI0nGImhP-oq0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/18l1Xto6dEkqGrfXw_KvJ2MCVIgWqQOpI0nGImhP-oq0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1LsaJYfV4N5x1mk8kQkKVIGh92LsHya382DfY0qS1OrQ/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1uysN0xCYwgfRwqeyXwL49x0mw6EXa3ZkLuzTtiaysa0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1U7P5VXtAxYAkZaXJgGsozuzSynHsVWI81MX7_SdJRwA/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1irQkBIAbLYj34h9U2pg55g5OjazWqK716qbETUcmk-8/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1c6-99GleVM3LmDxFFX6LbEmJ8qp1cOgccEU8JlYrMD0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/1i5-OJYaL90w_XZprD9Ajs1MinR6CIUjrpSN921YjAS0/edit?usp=sharing
+
+- https://docs.google.com/presentation/d/161GFoRLlbSOKbVm4L3pdDZ13q9nIostpGcDjwQc6D6o/edit?usp=sharing
+
 ---
 
 ## 코랩 환경 셋팅 
