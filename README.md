@@ -97,7 +97,7 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 ---
 
-## Android / Java
+## Java
 
 - 윈도우즈에 자바 설치 : https://languagestory.tistory.com/11
 
@@ -124,6 +124,14 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 - https://docs.google.com/presentation/d/161GFoRLlbSOKbVm4L3pdDZ13q9nIostpGcDjwQc6D6o/edit?usp=sharing
 
 - https://docs.google.com/presentation/d/1H3j8pN2cq_3PxjYoqHmQ4cBBbzWaqMQmFzlI-iqC2KE/edit?usp=sharing
+
+
+--- 
+
+## 안드로이드 
+
+- 첫 안드로이드 샘플앱 개발에 필요한 데이터 : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/dice-app-data.zip
+
 
 
 ---
