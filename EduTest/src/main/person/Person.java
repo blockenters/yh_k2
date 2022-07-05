@@ -6,6 +6,18 @@ public class Person {
 	protected String name;
 	protected String dept;
 	protected String address;
+
+	public Person(){
+		
+	}
+	
+	public Person(int num, String name, String dept, String address){
+		this.num = num;
+		this.name = name;
+		this.dept = dept;
+		this.address = address;
+	}
+	
 	
 	public void print() {
 		System.out.println("num : " + num);

@@ -27,7 +27,7 @@ public class PersonMain {
 		f.setSubjects( new String[] {"자바", "파이썬"}  );
 		
 		f.print();
-		f.printSubj();
+		
 		
 		System.out.println("-----------------");
 		
@@ -38,8 +38,7 @@ public class PersonMain {
 		s.setAddress("경기도 성남시");
 		s.setSubjects(new String[] {"자바", "마케팅","사회"});
 		
-		s.print();
-		s.printSubj();
+		s.print();		
 		
 		
 		System.out.println("-----------------");
@@ -51,9 +50,27 @@ public class PersonMain {
 		sf.setAddress("강원도");		
 		sf.setJob("교육부");
 		
-		sf.print();
-		sf.printJob();
+		sf.print();		
 		
+		System.out.println("-----------------");
+		
+		Person p2 = new Person(10, "홍길동", "마케팅부", "인천시");
+		p2.print();
+		
+		System.out.println("-----------------");
+		
+		Professor pf = 
+			new Professor(11, "김길동", "경제학과","인천시" , new String[] {"자바", "경제","사회"} );                 
+		
+		pf.print();
+		 
+		System.out.println("-----------------");
+		
+		
+		Staff sf2 = new Staff(12, "김나나", "교육부", "인천시", "교육관리");
+		sf2.print();
+		 
+		System.out.println("-----------------");
 		
 	}
 

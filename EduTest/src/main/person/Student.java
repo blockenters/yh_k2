@@ -11,6 +11,29 @@ public class Student extends Person {
 	
 	private String[] subjects;
 	
+	public Student() {
+		
+	}
+	
+	public Student(int num, String name, String dept, 
+			String address, String[] subjects) {
+		super(num, name, dept, address);
+		this.subjects = subjects;
+	}
+	
+	
+	public void print() {
+		System.out.println(num);
+		System.out.println(name);
+		System.out.println(dept);
+		System.out.println(address);
+		System.out.println( name + " 학생의 수강신청 과목");
+		for (int i = 0; i < subjects.length ; i++) {
+			System.out.println( subjects[i] );
+		}
+	}
+	
+	
 	public void printSubj() {
 		System.out.println( name + " 학생의 수강신청 과목");
 		for (int i = 0; i < subjects.length ; i++) {
