@@ -40,14 +40,25 @@ public class MainActivity extends AppCompatActivity {
                 double percent = Double.valueOf(percentStr).doubleValue();
                 double number = Double.valueOf(numberStr).doubleValue();
 
-                double result = percent * number / 1000;
+                double result = number * percent / 100;
 
                 // 3. 결과를 텍스트뷰에 보여준다.
 
-                txtResult.setText( ""+result );
+                txtResult.setText( number+"를 "+percent+"% 계산 : "+result );
+
+                // 4. 다음 입력을 위해서,
+                //    이전에 입력한 글자들은 지운다.
+                editNumber.setText("");
+                editPercent.setText("");
+
 
             }
         });
 
     }
+
+
+
+
+
 }
