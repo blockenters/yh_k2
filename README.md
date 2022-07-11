@@ -141,6 +141,8 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 실습 2 : https://docs.google.com/presentation/d/1iF3dxBLcCB_CTZEVPRuIMa01HtsYiZmTYcqvUOSFI1E/edit?usp=sharing
 
+- 샘플앱 2 : https://docs.google.com/presentation/d/1ztSZ1qh8kewcxOQ9GsTAA_4-ZrFRDgmnW60e9-07HbI/edit?usp=sharing
+
 ---
 
 ## 코랩 환경 셋팅 
