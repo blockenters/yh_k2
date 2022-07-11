@@ -31,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:max="10" />
+            android:max="10"
+            android:progressTint="#FF0000" />
 
         <TextView
             android:id="@+id/txtResult"

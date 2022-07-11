@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // 1-1. 프로그래스바를 증가시킨다.
-                progressBar.setProgress(quizIndex+1);
+
 
                 // 2. 이버튼은 트루이므로, 정답이 트루이면
                 //    결과 텍스트뷰에 "정답입니다." 출력,
@@ -84,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
                     txtResult.setText("지금까지 맞춘 문제는 총 "+count+"개입니다.");
                 }
 
+                // 3-1. 프로그래스바를 증가시킨다.
+                progressBar.setProgress(quizIndex+1);
+
             }
         });
 
@@ -97,9 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     return;
                 }
-
-                // 1-1. 프로그래스바를 증가시킨다.
-                progressBar.setProgress(quizIndex+1);
 
                 // 2. 이버튼은 폴스 이므로, 정답이 폴스 이면
                 //    결과 텍스트뷰에 "정답입니다." 출력,
@@ -119,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
                     txtQuiz.setText("문제가 더이상 없습니다.");
                     txtResult.setText("지금까지 맞춘 문제는 총 "+count+"개입니다.");
                 }
+
+                // 3-1. 프로그래스바를 증가시킨다.
+                progressBar.setProgress(quizIndex+1);
 
             }
         });
