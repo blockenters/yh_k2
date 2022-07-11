@@ -10,9 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 // JsonObjectRequest 클래스를 객체 생성한다.
                 // 생성자는 :  http 메소드, API URL, 전달할 데이터, 응답받으면 실행할 코드, 에러를 받으면 실행할 코드
                 JsonObjectRequest jsonObjectRequest =
-                        new JsonObjectRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>(){
+                        new JsonObjectRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
 
                             @Override
                             public void onResponse(JSONObject response) {
@@ -77,10 +79,22 @@ public class MainActivity extends AppCompatActivity {
                                 // 즉, txtLyrics 에 가사를 보여준다.
 
                                 Log.i("MyLyrics", response.toString());
+                                txtLyrics.setText(response.toString());
 
                             }
-                        }, null);
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.i("MyLyrics", error.toString());
+                            }
+                        });
 
+                // 네트워크를 통해서 데이터를 가져올때
+                // 시간이 오래 걸리면,
+                // 타임아웃값을 늘려준다.
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 requestQueue.add(jsonObjectRequest);
             }
         });
