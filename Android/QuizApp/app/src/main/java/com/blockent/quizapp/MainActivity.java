@@ -6,6 +6,7 @@ import android.icu.text.RelativeDateTimeFormatter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blockent.quizapp.model.Quiz;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtResult;
     Button btnTrue;
     Button btnFalse;
+    ProgressBar progressBar;
+
     ArrayList<Quiz> quizArrayList = new ArrayList<Quiz>();
 
     int quizIndex = 0;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         txtResult = findViewById(R.id.txtResult);
         btnTrue = findViewById(R.id.btnTrue);
         btnFalse = findViewById(R.id.btnFalse);
+        progressBar = findViewById(R.id.progressBar);
 
         // 2. 퀴즈를 만들어 준다.
         setQuizData();
@@ -41,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
         // 3. 첫번째 퀴즈문제를 화면에 낸다.
         txtQuiz.setText( quizArrayList.get(quizIndex).question );
 
+        // 3-1. 프로그래스바도 하나 증가시킨다.
+        progressBar.setProgress(quizIndex+1);
+
         // 4. 버튼을 누르면 정답인지 아닌지 알려주는 코드 작성.
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // 1. 현재 문제의 정답을 가져온다.
                 boolean answer = false;
                 if(quizIndex < quizArrayList.size()){
@@ -52,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     return;
                 }
+
+                // 1-1. 프로그래스바를 증가시킨다.
+                progressBar.setProgress(quizIndex+1);
 
                 // 2. 이버튼은 트루이므로, 정답이 트루이면
                 //    결과 텍스트뷰에 "정답입니다." 출력,
@@ -62,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 } else{
                     txtResult.setText("틀렸습니다.");
                 }
+
 
                 // 3. 그다음 문제를 출제한다.
                 quizIndex = quizIndex + 1;
@@ -85,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     return;
                 }
+
+                // 1-1. 프로그래스바를 증가시킨다.
+                progressBar.setProgress(quizIndex+1);
 
                 // 2. 이버튼은 폴스 이므로, 정답이 폴스 이면
                 //    결과 텍스트뷰에 "정답입니다." 출력,

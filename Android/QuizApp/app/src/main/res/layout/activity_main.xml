@@ -25,6 +25,14 @@
             android:text="퀴즈"
             android:textSize="28sp" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:max="10" />
+
         <TextView
             android:id="@+id/txtResult"
             android:layout_width="match_parent"
