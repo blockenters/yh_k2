@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     int quizIndex = 0;
 
+    int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 //    그렇지 않으면 "틀렸습니다." 출력
                 if (answer == true) {
                     txtResult.setText("정답입니다.");
+                    count = count + 1;
                 } else{
                     txtResult.setText("틀렸습니다.");
                 }
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     txtQuiz.setText( quizArrayList.get(quizIndex).question );
                 } else {
                     txtQuiz.setText("문제가 더이상 없습니다.");
+                    txtResult.setText("지금까지 맞춘 문제는 총 "+count+"개입니다.");
                 }
 
             }
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 //    그렇지 않으면 "틀렸습니다." 출력
                 if (answer == false) {
                     txtResult.setText("정답입니다.");
+                    count = count + 1;
                 } else{
                     txtResult.setText("틀렸습니다.");
                 }
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     txtQuiz.setText( quizArrayList.get(quizIndex).question );
                 } else {
                     txtQuiz.setText("문제가 더이상 없습니다.");
+                    txtResult.setText("지금까지 맞춘 문제는 총 "+count+"개입니다.");
                 }
 
             }
