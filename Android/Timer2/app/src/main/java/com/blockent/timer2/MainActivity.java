@@ -1,7 +1,9 @@
 package com.blockent.timer2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -113,6 +115,24 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    // 기계의 백버튼을 눌렀을때 실행되는 함수.
+    @Override
+    public void onBackPressed() {
+
+        // 알러트 다이얼로그 띄운다.
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        alert.setTitle("앱을 종료하시겠습니까?");
+        alert.setPositiveButton("네", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        alert.setNegativeButton("아니오", null);
+        alert.show();
+
     }
 }
 
