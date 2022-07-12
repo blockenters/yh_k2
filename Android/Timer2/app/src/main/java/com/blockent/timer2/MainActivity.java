@@ -2,6 +2,7 @@ package com.blockent.timer2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,17 +62,41 @@ public class MainActivity extends AppCompatActivity {
                 timer = new CountDownTimer(millisInFuture, countDownInterval) {
                     @Override
                     public void onTick(long l) {
+                        
+                        long remain = l / 1000;
+                        // int remain = (int) l / 1000;
 
+                        txtCount.setText(remain + "초");
                     }
 
                     @Override
                     public void onFinish() {
+                        
+                        // 1. 에니메이션 효과
+                        YoYo.with(Techniques.Bounce).duration(400)
+                                .repeat(4).playOn(imgAlarm);
+                        
+                        // 2. 알람음 효과
+                        MediaPlayer mp =
+                                MediaPlayer.create(MainActivity.this, R.raw.alarm);
+                        mp.start();
 
                     }
                 };
                 timer.start();
 
 
+            }
+        });
+
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 타이머 취소
+                timer.cancel();
+                // 텍스트뷰에 "타이머 취소되었음"
+                txtCount.setText("타이머 취소되었음.");
             }
         });
 
