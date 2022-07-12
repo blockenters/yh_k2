@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,7 +80,26 @@ public class MainActivity extends AppCompatActivity {
                                 // 즉, txtLyrics 에 가사를 보여준다.
 
                                 Log.i("MyLyrics", response.toString());
-                                txtLyrics.setText(response.toString());
+
+                                // JSON 객체에서, 우리가 원하는 정보를 빼내야 된다.
+
+                                try {
+                                    // JSONObject 에서, 내가 가져올 데이터가 문자열이면, getString("키")
+                                    // 내가 가져올 데이터가 정수이면, getInt("키")
+                                    // 내가 가져올 데이터가 float 이면, getFloat("키")
+                                    // 내가 가져올 데이터가 double 이면, getDouble("키")
+                                    // 내가 가져올 데이터가 리스트이면, getJsonArray("키")
+                                    // 내가 가져올 데이터가 딕셔너리형태이면, getJsonObject("키")
+                                    // 로 데이터를 가져올수 있다.
+                                    String lyrics = response.getString("lyrics");
+                                    txtLyrics.setText(lyrics);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(),
+                                            "네트워크 에러입니다.", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
 
                             }
                         }, new Response.ErrorListener() {
