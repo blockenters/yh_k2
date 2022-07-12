@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 String timeStr = editTime.getText().toString().trim();
 
                 // 2. 에디트텍스트의 내용이 있는지 확인해서 없으면, 실행 안시킨다.
-                if (timeStr.isEmpty()  ){
+                if (timeStr.isEmpty()  || !isNumeric(timeStr)  ){
                     return;
                 }
 
@@ -100,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
 
