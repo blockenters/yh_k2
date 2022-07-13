@@ -2,7 +2,9 @@ package com.blockent.data;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +37,24 @@ public class SecondActivity extends AppCompatActivity {
         txtEmail.setText(email);
         txtName.setText(name);
         editAge.setText(age+"");
+
+        // 버튼 이벤트 처리
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 1. 수정한 나이 데이터를 가져온다.
+                String ageStr = editAge.getText().toString().trim();
+                int age = Integer.valueOf(ageStr).intValue();
+
+                // 2. 이 나이 데이터를 MainActivity에 전달한다.
+                Intent intent = new Intent();
+                intent.putExtra("age", age);
+                setResult(0, intent);
+
+                // 3. 이 액티비티는 종료한다.
+                finish();
+            }
+        });
 
 
     }

@@ -21,13 +21,18 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
 
-
+    // 내가 실행한 액티비티로 부터, 데이터를 받아와서 처리하는 코드
     ActivityResultLauncher<Intent> startActivityResult =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     new ActivityResultCallback<ActivityResult>() {
                         @Override
                         public void onActivityResult(ActivityResult result) {
-                            
+                            // result 에는 resultCode 가 있다.
+                            // resultCode 의 값으로, 여러가지 구분해서 사용이 가능.
+                            if (result.getResultCode() == 0){
+                               int age = result.getData().getIntExtra("age", 0);
+                               editAge.setText(""+age);
+                            }
                         }
                     });
 
@@ -67,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 // 실행한 액티비티로부터 데이터를 받아오는 것이 있는 경우!!
-                startActivityForResult(intent, 0);
+//                startActivityForResult(intent, 0);
+                startActivityResult.launch(intent);
+
             }
         });
 
