@@ -1,6 +1,8 @@
 package com.blockent.contactmanager.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.telephony.ims.ImsMmTelManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blockent.contactmanager.EditActivity;
 import com.blockent.contactmanager.R;
 import com.blockent.contactmanager.model.Contact;
 
@@ -66,6 +70,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         TextView txtName;
         TextView txtPhone;
         ImageView imgDelete;
+        CardView cardView;
 
         // 3. 생성자 안에다가, 연결시키는 코드를 작성한다.
         public ViewHolder(@NonNull View itemView) {
@@ -74,6 +79,24 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             txtName = itemView.findViewById(R.id.txtName);
             txtPhone = itemView.findViewById(R.id.txtPhone);
             imgDelete = itemView.findViewById(R.id.imgDelete);
+            cardView = itemView.findViewById(R.id.cardView);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 카드뷰를 클릭하면 처리할 코드 작성.
+
+                    // 1. 유저가 몇번째 행을 클릭했는지, 인덱스로 알려준다.
+                    int index = getAdapterPosition();
+
+                    // 2. 이 인덱스에 저장되어있는 데이터를 가져온다.
+                    Contact contact = contactList.get(index);
+
+                    // 3. todo : 아이디, 이름, 전화번호를 ,  수정하는 화면으로 데이터를 넘겨준다.
+                    Intent intent = new Intent(context, EditActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
             imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
