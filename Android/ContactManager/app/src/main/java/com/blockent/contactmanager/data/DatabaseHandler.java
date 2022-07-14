@@ -104,11 +104,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<Contact> contactList = new ArrayList<Contact>();
 
-        cursor.moveToFirst();
-        for(int i = 0; i < cursor.getCount(); i++ ){
-            Contact contact = new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
-            contactList.add(contact);
-            cursor.moveToNext();
+//        cursor.moveToFirst();
+//        for(int i = 0; i < cursor.getCount(); i++ ){
+//            Contact contact = new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+//            contactList.add(contact);
+//            cursor.moveToNext();
+//        }
+
+        if(cursor.moveToFirst()){
+            do{
+                Contact contact = new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+                contactList.add(contact);
+            }while(cursor.moveToNext());
         }
 
         return contactList;
