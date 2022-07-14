@@ -46,7 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // 우리가 앱 동작시크는데 필요한 SQL 문이 적용된 함수들을 만든다.
     // CRUD 관련 함수들을 만든다.
 
-    void addContact(Contact contact){
+    public void addContact(Contact contact){
         // 데이터베이스를 가져온다.
         SQLiteDatabase db = this.getWritableDatabase();
         // 테이블의 컬럼이름과 해당 데이터를 매칭해서 넣어준다.
@@ -62,7 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // 주소록 데이터 가져오기
     //   - 1개의 주소록 데이터만 가져오기  :  id로 가져오기
     //     select * from contact where id = 3;
-    Contact getContact(int id){
+    public Contact getContact(int id){
         // 1. 데이터베이스를 가져온다.
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -94,7 +94,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //      1, 홍길동, 01022
     //      2, 김나나, 02122
 
-    ArrayList<Contact> getAllContacts(){
+    public ArrayList<Contact> getAllContacts() {
 
         // 1. 데이터베이스를 가져온다.
         SQLiteDatabase db = this.getReadableDatabase();
@@ -104,12 +104,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<Contact> contactList = new ArrayList<Contact>();
 
-//        cursor.moveToFirst();
+//    if(cursor.moveToFirst()){
 //        for(int i = 0; i < cursor.getCount(); i++ ){
 //            Contact contact = new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
 //            contactList.add(contact);
 //            cursor.moveToNext();
 //        }
+//    }
 
         if(cursor.moveToFirst()){
             do{
