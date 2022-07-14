@@ -122,6 +122,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return contactList;
     }
 
+    // 데이터 수정하는 함수
+    public void updateContact(Contact contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+//        ContentValues values = new ContentValues();
+//        values.put(Util.KEY_NAME, contact.name);
+//        values.put(Util.KEY_PHONE, contact.phone);
+//
+//        db.update(Util.TABLE_NAME, values,
+//                Util.KEY_ID + "=?", new String[]{contact.id+""});
+
+//        db.execSQL("update contact set name = '"+contact.name+"' , phone = '"+contact.phone+"' where id = "+contact.id);
+        db.execSQL("update contact set name = ? , phone = ? where id = ?" ,
+                new String[]{contact.name, contact.phone, contact.id+""});
+
+        db.close();
+
+        // update contact set name = '홍길동' , phone = '010-2222-3333' where id = 1;
+
+    }
+
 
 }
 

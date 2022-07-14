@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+        Contact contact = new Contact(1, "김길동", "010-5555-7777");
+        db.updateContact(contact);
 
     }
 
