@@ -9,8 +9,8 @@ public class Util {
 
     // 테이블의 컬럼 관련된 상수
     public static final String KEY_ID = "id";
-    public static final String KEY_NAME = "title";
-    public static final String KEY_PHONE = "content";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_CONTENT = "content";
 
 }
 
