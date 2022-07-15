@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i("MyContact",
             "id : " + data.id + " , name : "+data.name+" , phone : "+data.phone);
         }
+        db.close();
     }
 
 }

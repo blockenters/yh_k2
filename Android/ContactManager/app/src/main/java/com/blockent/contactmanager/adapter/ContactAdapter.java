@@ -3,6 +3,7 @@ package com.blockent.contactmanager.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.ims.ImsMmTelManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,11 +90,22 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                     // 1. 유저가 몇번째 행을 클릭했는지, 인덱스로 알려준다.
                     int index = getAdapterPosition();
 
+                    Log.i("MyContact", "몇번째 행 클릭했나?? " + index);
+
                     // 2. 이 인덱스에 저장되어있는 데이터를 가져온다.
                     Contact contact = contactList.get(index);
+                    // contact 안에 id, name, phone 다 들어있다.
 
                     // 3. todo : 아이디, 이름, 전화번호를 ,  수정하는 화면으로 데이터를 넘겨준다.
                     Intent intent = new Intent(context, EditActivity.class);
+
+                    intent.putExtra("contact", contact);
+
+                    // 데이터를 하나씩 보낼때 사용하는 방법
+//                    intent.putExtra("id", contact.id);
+//                    intent.putExtra("name", contact.name);
+//                    intent.putExtra("phone", contact.phone);
+
                     context.startActivity(intent);
                 }
             });

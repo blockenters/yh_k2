@@ -1,6 +1,8 @@
 package com.blockent.contactmanager.model;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
     public int id;
     public String name;
     public String phone;

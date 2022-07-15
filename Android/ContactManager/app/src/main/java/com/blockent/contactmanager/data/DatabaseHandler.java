@@ -85,6 +85,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // DB 에 저장된 데이터를 메모리에다 만들어줘야, cpu가 처리할 수 있다.
         Contact contact = new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
 
+        db.close();
+
         return contact;
     }
 
@@ -118,6 +120,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 contactList.add(contact);
             }while(cursor.moveToNext());
         }
+
+        db.close();
 
         return contactList;
     }
