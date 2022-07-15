@@ -10,4 +10,10 @@ public class Memo {
         this.title = title;
         this.content = content;
     }
+
+    public Memo(int id, String title, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
 }

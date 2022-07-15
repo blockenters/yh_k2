@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.media.AudioFocusRequest;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -46,6 +47,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "values ( ? , ? )";
         db.execSQL(query, new String[]{ memo.title, memo.content });
         db.close();
+    }
+
+    public ArrayList<Memo> getAllMemo(){
+        // 1. 데이터베이스를 가져온다.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("select * from memo", null);
+
+        ArrayList<Memo> memoList = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                Memo memo = new Memo(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+                memoList.add(memo);
+            }while(cursor.moveToNext());
+        }
+
+        db.close();
+        return memoList;
     }
 
 }

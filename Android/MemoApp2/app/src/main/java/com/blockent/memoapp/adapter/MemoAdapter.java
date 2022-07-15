@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.blockent.memoapp.R;
 import com.blockent.memoapp.model.Memo;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
 
-    // 이 어댑터를 사용하는, 액티비티의 this
+    // 필수멤버변수와 생성자 만들기
     Context context;
     List<Memo> memoList;
 
@@ -37,12 +39,11 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MemoAdapter.ViewHolder holder, int position) {
-        // 해당 행의 위치에 맞는, 메모데이터를 리스트에서 가져온다.
         Memo memo = memoList.get(position);
 
-        // 메모 객체에 있는 타이틀과 내용을 화면에 셋팅해 준다.
-        holder.txtTitle.setText(memo.title);
-        holder.txtContent.setText(memo.content);
+        holder.txtTitle.setText( memo.title );
+        holder.txtContent.setText( memo.content );
+
 
     }
 
@@ -69,14 +70,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
             imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo
+                    // todo : x 버튼 누르면 메모 삭제하는 코드 작성해야 한다.
                 }
             });
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo
+                    // todo : 메모 선택하면, 수정하는 액티비티로 가도록 코드작성해야한다.
                 }
             });
 

@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnAdd;
 
-    // 리사이클러 뷰를 처리하기 위한 멤버변수들
     RecyclerView recyclerView;
     MemoAdapter adapter;
     ArrayList<Memo> memoList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        // 메모 리스트에는 데이터가 없습니다.
-        // DB에 있습니다.
-        // 따라서 먼저, 디비에 저장된 메모리스트를 가져옵니다.
-        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
-        memoList = db.getAllmemos();
-        adapter = new MemoAdapter(MainActivity.this, memoList);
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +43,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // 데이터랑 연결!
+        // 메모데이터가 없다!!!! 디비에서 가져오자.
+        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+        memoList = db.getAllMemo();
+        adapter = new MemoAdapter(MainActivity.this, memoList);
+        recyclerView.setAdapter(adapter);
+        db.close();
+
     }
 }
 
