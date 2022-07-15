@@ -41,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         // DB 에서 주소록 데이터를 모두 가져와서, 리사이클러뷰에 표시한다.
         DatabaseHandler db = new DatabaseHandler(MainActivity.this);
 
@@ -50,11 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
-    }
+        db.close();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         printDBData();
     }
 

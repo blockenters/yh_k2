@@ -1,6 +1,7 @@
 package com.blockent.contactmanager.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.telephony.ims.ImsMmTelManager;
 import android.util.Log;
@@ -11,11 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blockent.contactmanager.EditActivity;
 import com.blockent.contactmanager.R;
+import com.blockent.contactmanager.data.DatabaseHandler;
 import com.blockent.contactmanager.model.Contact;
 
 import java.util.List;
@@ -32,6 +35,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     // 4. 어댑터 클래스의 멤버변수와 생성자를 만들어 준다.
     Context context;
     List<Contact> contactList;
+
+    int deleteIndex;
 
     public ContactAdapter(Context context, List<Contact> contactList) {
         this.context = context;
@@ -96,7 +101,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                     Contact contact = contactList.get(index);
                     // contact 안에 id, name, phone 다 들어있다.
 
-                    // 3. todo : 아이디, 이름, 전화번호를 ,  수정하는 화면으로 데이터를 넘겨준다.
+                    // 3. 아이디, 이름, 전화번호를 ,  수정하는 화면으로 데이터를 넘겨준다.
                     Intent intent = new Intent(context, EditActivity.class);
 
                     intent.putExtra("contact", contact);
@@ -113,7 +118,30 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo : 엑스이미지 누르면, 해당 주소록 삭제하도록 개발!
+                    // 엑스이미지 누르면, 해당 주소록 삭제하도록 개발!
+
+                    // 1. 어떤 행을 눌렀는지 정보를 얻어온다. 인덱스로.
+                    deleteIndex = getAdapterPosition();
+
+                    // 3. 알러트 다이얼로그를 띄운다.
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setTitle("주소록 삭제");
+                    alert.setMessage("정말 삭제하시겠습니까?");
+                    alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            DatabaseHandler db = new DatabaseHandler(context);
+                            Contact contact = contactList.get(deleteIndex);
+                            db.deleteContact(contact);
+                            db.close();
+
+                            contactList.remove(deleteIndex);
+                            notifyDataSetChanged();
+                        }
+                    });
+                    alert.setNegativeButton("NO", null);
+                    alert.show();
+
                 }
             });
 
