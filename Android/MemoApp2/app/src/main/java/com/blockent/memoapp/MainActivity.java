@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,6 +85,37 @@ public class MainActivity extends AppCompatActivity {
                 memoList = db.getAllMemo();
 
                 // 3. 가져온 메모를 화면에 표시
+                adapter = new MemoAdapter(MainActivity.this, memoList);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // 키워드 검색 에디트텍스트에 글자를 쓸때마다,
+                // 자동으로 해당 검색어를 가져와서, 디비에서 쿼리해서
+                // 검색 결과를 화면에 표시해 주는 기능개발.
+
+                String keyword = editSearch.getText().toString().trim();
+                Log.i("MyMemoApp", keyword);
+
+                if (keyword.length() < 2){
+                    return;
+                }
+
+                DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+                memoList = db.searchMemo(keyword);
                 adapter = new MemoAdapter(MainActivity.this, memoList);
                 recyclerView.setAdapter(adapter);
             }
