@@ -14,7 +14,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        android:backgroundTint="#00BCD4"
+        android:backgroundTint="#FFEB3B"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:background="#00BCD4"
+            android:background="#FFEB3B"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="이름"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="28sp" />
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="7dp"
                     android:text="나이"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="28sp" />
 
                 <TextView
@@ -56,7 +56,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:text="연봉"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="28sp" />
             </LinearLayout>
 
