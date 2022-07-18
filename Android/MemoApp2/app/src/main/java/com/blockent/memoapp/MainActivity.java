@@ -70,12 +70,32 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             }
         });
+
+        imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 1. 에디트 텍스트의 문자열을 지운다.
+                editSearch.setText("");
+                
+                // 2. 디비에서 저장되어있는 모든 메모를 가져와야 한다.
+                DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+                memoList = db.getAllMemo();
+
+                // 3. 가져온 메모를 화면에 표시
+                adapter = new MemoAdapter(MainActivity.this, memoList);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // 검색키워드 에디트 텍스트에 글자가 있으면, 없애도록한다.
+        editSearch.setText("");
 
         // 데이터랑 연결!
         // 메모데이터가 없다!!!! 디비에서 가져오자.
