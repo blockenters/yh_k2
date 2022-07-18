@@ -79,7 +79,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
     }
+
+    public void deleteMemo(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "delete from memo " +
+                " where id = ? ";
+        db.execSQL(query, new String[]{ id+"" });
+        db.close();
+    }
+
+    public ArrayList<Memo> searchMemo(String keyword) {
+        // 1. 데이터베이스를 가져온다.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("select * from memo where title like '%"+keyword+"%' or content like '%"+keyword+"%'  ", null);
+
+        ArrayList<Memo> memoList = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                Memo memo = new Memo(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+                memoList.add(memo);
+            }while(cursor.moveToNext());
+        }
+        db.close();
+        return memoList;
+    }
 }
+
+
+
+
 
 
 

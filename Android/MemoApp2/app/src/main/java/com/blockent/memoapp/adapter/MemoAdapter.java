@@ -89,9 +89,13 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
                             int index = getAdapterPosition();
                             Memo memo = memoList.get(index);
 
+                            // 2-2. 디비에서 삭제.
                             DatabaseHandler db = new DatabaseHandler(context);
                             db.deleteMemo(memo.id);
 
+                            // 3. 삭제한 행은, 화면에서도 사라져야 한다.
+                            memoList.remove(index);
+                            notifyDataSetChanged();
                         }
                     });
                     alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -102,8 +106,6 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
                     });
                     alert.show();
 
-
-                    // 3. 삭제한 행은, 화면에서도 사라져야 한다.
                 }
             });
 

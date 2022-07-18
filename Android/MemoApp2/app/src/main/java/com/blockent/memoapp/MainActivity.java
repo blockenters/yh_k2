@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.blockent.memoapp.adapter.MemoAdapter;
 import com.blockent.memoapp.data.DatabaseHandler;
@@ -18,6 +20,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     Button btnAdd;
+
+    EditText editSearch;
+    ImageView imgSearch;
+    ImageView imgDelete;
 
     RecyclerView recyclerView;
     MemoAdapter adapter;
@@ -36,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+        editSearch = findViewById(R.id.editSearch);
+        imgSearch = findViewById(R.id.imgSearch);
+        imgDelete = findViewById(R.id.imgDelete);
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +52,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 1. 에디트 텍스트에서 검색어 가져온다.
+                String keyword = editSearch.getText().toString().trim();
+
+                // 2. 검색어로 DB에 쿼리한다.
+                DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+                memoList = db.searchMemo(keyword);
+
+                // 3. 검색어에 매칭한 메모 결과들을 화면에 표시한다.
+                adapter = new MemoAdapter(MainActivity.this, memoList);
+                recyclerView.setAdapter(adapter);
             }
         });
     }
