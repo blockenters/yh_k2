@@ -1,6 +1,8 @@
 package com.blockent.memoapp.model;
 
-public class Memo {
+import java.io.Serializable;
+
+public class Memo implements Serializable {
 
     public int id;
     public String title;

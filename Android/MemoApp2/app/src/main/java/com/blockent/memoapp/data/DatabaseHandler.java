@@ -68,6 +68,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return memoList;
     }
 
+    public void updateMemo(int id, String title, String content) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "update memo " +
+                " set title = ? , content = ? " +
+                " where id = ? ";
+
+        db.execSQL(query, new String[]{ title, content, id+"" });
+        db.close();
+
+    }
 }
 
 

@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MemoAdapter adapter;
     ArrayList<Memo> memoList;
+    
+    // 깃허브 연동 완료
 
 
     @Override
