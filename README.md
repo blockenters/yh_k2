@@ -155,6 +155,13 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 - 실습 8 : https://docs.google.com/presentation/d/10kvtW8KPNxwYRZwxn5AccK2XpCUd73iP4HAyk2bULPc/edit?usp=sharing
 
+- 실습 8용 URL 
+
+다음 url 로 API 호출하여 데이터 가지고 와서
+http://dummy.restapiexample.com/api/v1/employees
+위의 URL이 잘 안되면, 
+https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
+
 - 실습 9 : https://docs.google.com/presentation/d/1o9pzNaauTWSAInM6Yo6QVbiNGUcNIuVprLOgAZji_DI/edit?usp=sharing
 
 ---
