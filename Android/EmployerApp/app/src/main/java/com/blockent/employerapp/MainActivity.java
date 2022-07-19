@@ -1,9 +1,15 @@
 package com.blockent.employerapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,10 +46,40 @@ public class MainActivity extends AppCompatActivity {
     // 위의 URL 이 안되면
     final String URL = "https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json";
 
+
+
+    // 내가 실행한 액티비티로부터 데이터를 다시 받아올때 작성하는 코드
+    public ActivityResultLauncher<Intent> activityResultLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
+                            // 받아왔을때 실행되는 코드니까, 여기에 작성.
+                            if(result.getResultCode() == RESULT_OK){
+                                int age = result.getData().getIntExtra("age", 0);
+                                int salary = result.getData().getIntExtra("salary", 0);
+                                int index = result.getData().getIntExtra("index", 0);
+                                // 데이터를 저장하고 있는 리스트에서, 해당 행에 매칭되는
+                                // 임플로이이 객체를 가져와서, 데이터를 수정!
+                                Employee employee = employeeList.get(index);
+                                employee.age = age;
+                                employee.salary = salary;
+
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 액션바를 가져오는 방법
+//        ActionBar actionBar = getSupportActionBar();
+        getSupportActionBar().setTitle(R.string.title_main);
 
         recyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.progressBar);
@@ -107,4 +143,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         queue.add(request);
     }
+
+
 }

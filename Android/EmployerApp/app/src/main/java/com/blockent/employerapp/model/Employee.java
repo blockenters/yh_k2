@@ -1,6 +1,8 @@
 package com.blockent.employerapp.model;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable {
 
     public int id;
     public String name;

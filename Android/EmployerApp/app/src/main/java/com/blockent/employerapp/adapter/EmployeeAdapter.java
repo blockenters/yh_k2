@@ -1,6 +1,7 @@
 package com.blockent.employerapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blockent.employerapp.EditActivity;
+import com.blockent.employerapp.MainActivity;
 import com.blockent.employerapp.R;
 import com.blockent.employerapp.model.Employee;
 
@@ -72,7 +75,14 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo
+                    Intent intent = new Intent(context, EditActivity.class);
+
+                    int index = getAdapterPosition();
+                    Employee employee = employeeList.get(index);
+                    intent.putExtra("employee", employee);
+                    intent.putExtra("index", index);
+                    // context.startActivity(intent);
+                    ((MainActivity)context).activityResultLauncher.launch(intent);
                 }
             });
 
