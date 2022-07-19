@@ -171,6 +171,8 @@ https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
 
 실습 10 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/photos.json
 
+- 안드로이드의 문자, 웹, 전화 등등의 인텐트 사용법 : https://crone.tistory.com/511
+
 ---
 
 ## 코랩 환경 셋팅 
