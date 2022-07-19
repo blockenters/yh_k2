@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">직원정보앱</string>
+    <string name="title_main">직원 목록</string>
+    <string name="title_edit">직원 정보 수정</string>
+</resources>
