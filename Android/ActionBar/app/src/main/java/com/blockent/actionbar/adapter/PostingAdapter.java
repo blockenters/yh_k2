@@ -59,7 +59,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
 
             cardView = itemView.findViewById(R.id.cardView);
             txtTitle = itemView.findViewById(R.id.txtTitle);
-            txtBody = itemView.findViewById(R.id.txtTitle);
+            txtBody = itemView.findViewById(R.id.txtBody);
             imgDelete = itemView.findViewById(R.id.imgDelete);
 
         }
