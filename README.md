@@ -164,6 +164,8 @@ https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
 
 - 실습 9 : https://docs.google.com/presentation/d/1o9pzNaauTWSAInM6Yo6QVbiNGUcNIuVprLOgAZji_DI/edit?usp=sharing
 
+실습 9 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/posting.json
+
 ---
 
 ## 코랩 환경 셋팅 
