@@ -1,5 +1,9 @@
 package com.blockent.actionbar;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +42,27 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
 
+    public ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == RESULT_OK){
+                        String title = result.getData().getStringExtra("title");
+                        String body = result.getData().getStringExtra("body");
+
+                        Posting posting = new Posting(1, 1, title, body);
+
+                        postingList.add(0, posting);
+
+                        adapter.notifyDataSetChanged();
+
+                    }
+                }
+            }
+    );
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 플로팅 액션 버튼 클릭했을때, 하고 싶은 일은 여기에
                 Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
+//                startActivity(intent);
+                launcher.launch(intent);
             }
         });
 
@@ -119,7 +145,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this,
                     AddActivity.class);
 
-            startActivity(intent);
+//            startActivity(intent);
+            launcher.launch(intent);
+
+        } else if(itemId == R.id.menuAbout){
+            // todo : About 클릭했을때 하고 싶은 일 코드작성.
         }
 
         return super.onOptionsItemSelected(item);

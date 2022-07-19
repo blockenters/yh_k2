@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ActionBar</string>
     <string name="action_main_title">포스팅리스트</string>
+    <string name="action_add_title">포스팅 생성</string>
 </resources>
