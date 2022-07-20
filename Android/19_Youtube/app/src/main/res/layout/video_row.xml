@@ -41,7 +41,7 @@
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/imgUrl"
+                android:id="@+id/imgThumb"
                 android:layout_width="300dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
