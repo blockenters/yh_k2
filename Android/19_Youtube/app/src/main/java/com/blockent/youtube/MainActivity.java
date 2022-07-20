@@ -170,6 +170,12 @@ public class MainActivity extends AppCompatActivity {
                 // 3. 프로그레스바를 돌린다.
                 progressBar.setVisibility(View.VISIBLE);
 
+                videoList.clear();
+                if (adapter != null){
+                    adapter.notifyDataSetChanged();
+                }
+
+
                 // 4. URL을 조합한다.
                 // ?part=snippet&key=[자신의 API KEY]&q=축구&maxResults=20
                 String url = Config.BASE_URL + "?part=snippet&key="+
