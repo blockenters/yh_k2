@@ -177,6 +177,9 @@ https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
 
 실습 12 : https://docs.google.com/presentation/d/11WHvpWFQZQx8LnDYbAGkZx41VT-mpEHSj-AOHoiXjqg/edit?usp=sharing
 
+
+- retrofit 라이브러리 사용법 : https://docs.google.com/presentation/d/1O_p-iWCSxDGU-t0Vh2MKghxzbhQEUlBangQKGYeOxPo/edit?usp=sharing
+
 ---
 
 ## 코랩 환경 셋팅 
