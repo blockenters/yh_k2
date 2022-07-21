@@ -1,9 +1,13 @@
 package com.blockent.papago;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.blockent.papago.model.Papago;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     TextView txtResult;
 
+    String text;
+
     final String URL = "https://openapi.naver.com/v1/papago/n2mt";
+
+    ArrayList<Papago> papagoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // 2. 에디트텍스트에서 문장가져온다.
-                String text = editText.getText().toString().trim();
+                text = editText.getText().toString().trim();
 
                 if(text.isEmpty()){
                     Toast.makeText(MainActivity.this, "번역할 문장을 입력하세요.", Toast.LENGTH_SHORT).show();
@@ -89,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
                                     JSONObject result = new JSONObject(response);
                                     String translatedText = result.getJSONObject("message").getJSONObject("result").getString("translatedText");
                                     txtResult.setText(translatedText);
+
+                                    // 히스토리 저장.
+                                    Papago papago = new Papago(text, translatedText);
+
+                                    papagoList.add(papago);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -129,6 +144,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        
+        int itemId = item.getItemId();
+        
+        if(itemId == R.id.menuHistory){
+
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(intent);
+
+        }
+        
+        return super.onOptionsItemSelected(item);
     }
 }
 
