@@ -1,3 +1,9 @@
+    bulid.gradle  에
+    
+    implementation 'commons-io:commons-io:2.4'
+    
+    ---
+    
     strings.xml 안에
     
     <string-array name="camera">
