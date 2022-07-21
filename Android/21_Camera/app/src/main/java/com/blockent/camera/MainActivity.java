@@ -84,8 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (i == 0){
                     // todo : 사진찍는 코드 실행
+                    camera();
+
                 } else if (i == 1){
                     // todo : 앨범에서 사진 가져오는 코드 실행
+                    album();
                 }
             }
         });
