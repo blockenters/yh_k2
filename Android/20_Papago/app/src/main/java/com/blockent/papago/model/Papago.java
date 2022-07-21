@@ -1,6 +1,8 @@
 package com.blockent.papago.model;
 
-public class Papago {
+import java.io.Serializable;
+
+public class Papago implements Serializable {
 
     public String text;
     public String translatedText;

@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                                     // 히스토리 저장.
                                     Papago papago = new Papago(text, translatedText);
 
-                                    papagoList.add(papago);
+                                    papagoList.add(0, papago);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         if(itemId == R.id.menuHistory){
 
             Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            intent.putExtra("papagoList", papagoList);
             startActivity(intent);
 
         }
