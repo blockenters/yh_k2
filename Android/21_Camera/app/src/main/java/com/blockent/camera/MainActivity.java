@@ -9,12 +9,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
@@ -29,6 +31,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -36,6 +40,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -262,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
 
                 imageView.setImageBitmap(photo);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                imageView.setBackgroundResource(R.drawable.image_border);
 
 //                imageView.setImageBitmap( getBitmapAlbum( imageView, albumUri ) );
 
@@ -270,11 +274,11 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace( );
             }
 
-            uploadSalesPhoto();
+            // 네트워크로 보낸다.
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-}
+
 
     public static Bitmap rotateBitmap(Bitmap bitmap, int orientation) {
 
@@ -326,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             if ( cursor == null ) return null;
             cursor.moveToFirst( );
-            String fileName = cursor.getString( cursor.getColumnIndex( OpenableColumns.DISPLAY_NAME ) );
+            @SuppressLint("Range") String fileName = cursor.getString( cursor.getColumnIndex( OpenableColumns.DISPLAY_NAME ) );
             cursor.close( );
             return fileName;
 
