@@ -102,8 +102,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getNetworkData();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNetworkData();
     }
 
     // 데이터를 처음 가져올때만 실행하는 함수.

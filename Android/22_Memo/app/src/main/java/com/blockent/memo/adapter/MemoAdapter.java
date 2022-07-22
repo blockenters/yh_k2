@@ -1,6 +1,7 @@
 package com.blockent.memo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blockent.memo.EditActivity;
 import com.blockent.memo.R;
 import com.blockent.memo.model.Memo;
 
@@ -39,7 +41,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
         Memo memo = memoList.get(position);
 
         holder.txtTitle.setText(memo.getTitle());
-        holder.txtDate.setText(memo.getDate());
+        holder.txtDate.setText( memo.getDate().replace("T", " ").substring(0, 15+1)  );
         holder.txtContent.setText(memo.getContent());
 
     }
@@ -70,6 +72,12 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int index = getAdapterPosition();
+                    Memo memo = memoList.get(index);
+
+                    Intent intent = new Intent(context, EditActivity.class);
+                    intent.putExtra("memo", memo);
+                    context.startActivity(intent);
 
                 }
             });
