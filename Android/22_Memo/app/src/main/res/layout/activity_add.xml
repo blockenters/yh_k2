@@ -50,7 +50,7 @@
                 android:backgroundTint="#D8DAE1"
                 android:text="날짜선택"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="28sp" />
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btnTime"
@@ -61,7 +61,7 @@
                 android:backgroundTint="#D8DAE1"
                 android:text="시간선택"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="28sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
 
