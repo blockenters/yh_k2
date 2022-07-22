@@ -2,7 +2,7 @@ package com.blockent.memo.model;
 
 import java.io.Serializable;
 
-public class RegisterRes implements Serializable {
+public class UserRes implements Serializable {
 
     private String result;
     private String access_token;

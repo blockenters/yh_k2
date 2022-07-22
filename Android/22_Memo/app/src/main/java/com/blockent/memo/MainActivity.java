@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         if(accessToken.isEmpty()){
             Intent intent = 
                     new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);            
+            startActivity(intent);
+            finish();
         } else {
             // todo 내 메모 가져오는 api 호출
         }
