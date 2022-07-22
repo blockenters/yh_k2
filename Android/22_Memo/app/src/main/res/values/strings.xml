@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Memo</string>
+    <string name="dialog_register">회원가입 중입니다...</string>
+    <string name="txt_login_btn"><u>로그인</u></string>
+    <string name="txt_register_btn"><u>회원가입</u></string>
+    <string name="dialog_login">로그인 중입니다...</string>
+</resources>
