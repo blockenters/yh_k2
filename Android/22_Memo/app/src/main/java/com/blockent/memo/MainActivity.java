@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,9 +19,11 @@ import android.widget.ProgressBar;
 import com.blockent.memo.adapter.MemoAdapter;
 import com.blockent.memo.api.MemoApi;
 import com.blockent.memo.api.NetworkClient;
+import com.blockent.memo.api.UserApi;
 import com.blockent.memo.config.Config;
 import com.blockent.memo.model.Memo;
 import com.blockent.memo.model.MemoList;
+import com.blockent.memo.model.PostRes;
 
 import java.util.ArrayList;
 
@@ -45,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
     int offset = 0;
     int limit = 7;
     int count = 0;
+    private ProgressDialog dialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // 1. 쉐어드프리퍼런스에 억세스토큰을 가져온다.
         SharedPreferences sp = 
@@ -211,9 +216,55 @@ public class MainActivity extends AppCompatActivity {
 
         if(itemId == R.id.menuLogout){
             // 로그아웃 처리해준다.
+            Retrofit retrofit = NetworkClient.getRetrofitClient(MainActivity.this);
+            UserApi api = retrofit.create(UserApi.class);
+            SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
+            String accessToken = sp.getString("accessToken", "");
+            Call<PostRes> call = api.logout("Bearer "+accessToken);
+
+            showProgress("로그아웃...");
+            call.enqueue(new Callback<PostRes>() {
+                @Override
+                public void onResponse(Call<PostRes> call, Response<PostRes> response) {
+                    dismissProgress();
+                    if(response.isSuccessful()){
+
+                        // 네트워크에서 잘 처리가 되었으면,
+                        // 클라이언트에서도 로그인 정보를 가지고 있는
+                        // 억세스토큰을 초기화 시켜야한다.
+                        SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("accessToken", "");
+                        editor.apply();
+
+                        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PostRes> call, Throwable t) {
+                    dismissProgress();
+                }
+            });
+
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void showProgress(String message){
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage(message);
+        dialog.show();
+    }
+
+    void dismissProgress(){
+        dialog.dismiss();
     }
 }
 
