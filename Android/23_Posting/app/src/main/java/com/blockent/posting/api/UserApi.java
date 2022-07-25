@@ -5,6 +5,7 @@ import com.blockent.posting.model.UserRes;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface UserApi {
@@ -17,6 +18,9 @@ public interface UserApi {
     @POST("/users/login")
     Call<UserRes> login(@Body User user);
 
+    // 로그아웃 API
+    @POST("/users/logout")
+    Call<UserRes> logout(@Header("Authorization") String token);
 
 }
 
