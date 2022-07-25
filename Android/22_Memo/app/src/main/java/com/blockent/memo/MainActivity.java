@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     int count = 0;
     private ProgressDialog dialog;
 
+    int index;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -270,6 +272,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteMemo(int index){
+
+        this.index = index;
+
         // 여기에 알러트다이얼로그 띄우고
         // 알러트다이얼로그에서 YES 버튼 누르면,
         // 네트워크로 API 호출하여, 해당 메모 삭제하고,
@@ -288,12 +293,30 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
                 String accessToken = sp.getString("accessToken", "");
 
-                String memoId =
+                Memo memo = memoList.get(index);
+                int memoId = memo.getId();
 
-                Call<PostRes> call = api.deleteMemo()
+                Call<PostRes> call = api.deleteMemo("Bearer "+accessToken, memoId);
 
+                showProgress("메모 삭제중...");
+                call.enqueue(new Callback<PostRes>() {
+                    @Override
+                    public void onResponse(Call<PostRes> call, Response<PostRes> response) {
+                        dismissProgress();
 
+                        if(response.isSuccessful()){
+                            // 이부분 코딩~
+                        }else{
 
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostRes> call, Throwable t) {
+                        dismissProgress();
+                    }
+                });
             }
         });
         alert.setNegativeButton("NO", null);
