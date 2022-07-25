@@ -1,11 +1,13 @@
 package com.blockent.memo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -266,6 +268,39 @@ public class MainActivity extends AppCompatActivity {
     void dismissProgress(){
         dialog.dismiss();
     }
+
+    public void deleteMemo(int index){
+        // 여기에 알러트다이얼로그 띄우고
+        // 알러트다이얼로그에서 YES 버튼 누르면,
+        // 네트워크로 API 호출하여, 해당 메모 삭제하고,
+        // 삭제하고 나면, 화면에 반영해줘야한다.
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        alert.setTitle(R.string.alert_main_title);
+        alert.setMessage(R.string.alert_main_message);
+        alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Retrofit retrofit = NetworkClient.getRetrofitClient(MainActivity.this);
+                MemoApi api = retrofit.create(MemoApi.class);
+
+                SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
+                String accessToken = sp.getString("accessToken", "");
+
+                String memoId =
+
+                Call<PostRes> call = api.deleteMemo()
+
+
+
+            }
+        });
+        alert.setNegativeButton("NO", null);
+        alert.show();
+
+    }
+
 }
 
 

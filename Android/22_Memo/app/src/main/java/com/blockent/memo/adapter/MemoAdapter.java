@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blockent.memo.EditActivity;
+import com.blockent.memo.MainActivity;
 import com.blockent.memo.R;
 import com.blockent.memo.model.Memo;
 
@@ -85,6 +86,18 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
             imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    // 여기에 알러트다이얼로그 띄우고
+                    // 알러트다이얼로그에서 YES 버튼 누르면,
+                    // 네트워크로 API 호출하여, 해당 메모 삭제하고,
+                    // 삭제하고 나면, 화면에 반영해줘야한다.
+
+                    // 위의 일을! 메인액티비티에서하는 함수를 만들고,
+                    // 여기서는 메인액티비티의 함수만 호출해 주자!
+
+                    int index = getAdapterPosition();
+
+                    ((MainActivity)context).deleteMemo(index);
 
                 }
             });
