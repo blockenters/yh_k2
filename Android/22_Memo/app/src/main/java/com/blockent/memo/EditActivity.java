@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +14,18 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.blockent.memo.api.MemoApi;
+import com.blockent.memo.api.NetworkClient;
+import com.blockent.memo.config.Config;
 import com.blockent.memo.model.Memo;
+import com.blockent.memo.model.PostRes;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -28,12 +38,14 @@ public class EditActivity extends AppCompatActivity {
     private String time;
     private ProgressDialog dialog;
 
+    Memo memo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        Memo memo = (Memo) getIntent().getSerializableExtra("memo");
+        memo = (Memo) getIntent().getSerializableExtra("memo");
 
         editTitle = findViewById(R.id.editTitle);
         btnDate = findViewById(R.id.btnDate);
@@ -61,16 +73,56 @@ public class EditActivity extends AppCompatActivity {
                     return;
                 }
 
+                date = btnDate.getText().toString().trim();
+
                 if (date.isEmpty()) {
                     Toast.makeText(EditActivity.this, "날짜는 필수입니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                time = btnTime.getText().toString().trim();
+
                 if (time.isEmpty()) {
                     Toast.makeText(EditActivity.this, "시간은 필수입니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 String content = editContent.getText().toString().trim();
+
+                // 네트워크로 데이터 보내기.
+                Retrofit retrofit = NetworkClient.getRetrofitClient(EditActivity.this);
+                MemoApi api = retrofit.create(MemoApi.class);
+
+                SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
+                String accessToken = sp.getString("accessToken","");
+
+                memo.setTitle(title);
+                memo.setDate(date+" "+time);
+                memo.setContent(content);
+
+                Call<PostRes> call = api.updateMemo("Bearer "+accessToken, memo.getId(), memo );
+
+                showProgress("메모 수정중...");
+
+                call.enqueue(new Callback<PostRes>() {
+                    @Override
+                    public void onResponse(Call<PostRes> call, Response<PostRes> response) {
+                        dismissProgress();
+                        if(response.isSuccessful()){
+                            // HTTP 상태 코드가 200일때
+                            Toast.makeText(EditActivity.this, "수정완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                            finish();
+
+                        }else{
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostRes> call, Throwable t) {
+                        dismissProgress();
+                    }
+                });
 
 
             }
