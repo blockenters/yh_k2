@@ -10,8 +10,10 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -32,6 +34,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blockent.posting.api.NetworkClient;
+import com.blockent.posting.api.PostingApi;
+import com.blockent.posting.config.Config;
+import com.blockent.posting.model.PostRes;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
@@ -43,12 +50,21 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class AddActivity extends AppCompatActivity {
 
     ImageView imgPhoto;
     EditText editContent;
     Button btnSave;
     private File photoFile;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -64,6 +80,60 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDialog();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(photoFile == null){
+                    Toast.makeText(AddActivity.this, "사진을 선택하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String content = editContent.getText().toString().trim();
+
+                if(content.isEmpty()){
+                    Toast.makeText(AddActivity.this, "내용을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Retrofit retrofit = NetworkClient.getRetrofitClient(AddActivity.this);
+                PostingApi api = retrofit.create(PostingApi.class);
+
+                // 멀티파트로 파일을 보내는 경우, 파일 파라미터 만드는 방법
+                RequestBody fileBody = RequestBody.create(photoFile, MediaType.parse("image/*"));
+                MultipartBody.Part photo = MultipartBody.Part.createFormData("photo",
+                        photoFile.getName(), fileBody);
+                // 멀티파트로 텍스트를 보내는 경우, 파라미터 만드는 방법
+                RequestBody contentBody = RequestBody.create(content, MediaType.parse("text/plain"));
+
+                // 헤더에 들어갈 억세스토큰 가져온다.
+                SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
+                String accessToken = sp.getString("accessToken", "");
+
+                Call<PostRes> call = api.addPosting("Bearer "+accessToken,
+                                                    photo,
+                                                    contentBody);
+
+                showProgress("포스팅 업로드 중...");
+
+                call.enqueue(new Callback<PostRes>() {
+                    @Override
+                    public void onResponse(Call<PostRes> call, Response<PostRes> response) {
+                        dismissProgress();
+
+                        Toast.makeText(AddActivity.this, "업로드가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostRes> call, Throwable t) {
+                        dismissProgress();
+                    }
+                });
+
             }
         });
     }
@@ -409,5 +479,16 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+
+    void showProgress(String message){
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage(message);
+        dialog.show();
+    }
+
+    void dismissProgress(){
+        dialog.dismiss();
+    }
 
 }
