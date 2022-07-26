@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blockent.posting.PostingListActivity;
 import com.blockent.posting.R;
 import com.blockent.posting.config.Config;
 import com.blockent.posting.model.Posting;
@@ -42,7 +43,7 @@ public class FollowPostingAdapter extends RecyclerView.Adapter<FollowPostingAdap
         holder.txtContent.setText(posting.getContent());
         holder.txtName.setText(posting.getName());
         holder.txtCreatedAt.setText(posting.getCreatedAt());
-        holder.txtLikeCnt.setText(posting.getLikeCnt());
+        holder.txtLikeCnt.setText(""+posting.getLikeCnt());
 
         if(posting.getIsLike() == 1){
             holder.imgLike.setImageResource(R.drawable.ic_thumb_up);
@@ -80,6 +81,16 @@ public class FollowPostingAdapter extends RecyclerView.Adapter<FollowPostingAdap
             txtLikeCnt = itemView.findViewById(R.id.txtLikeCnt);
             imgPhoto = itemView.findViewById(R.id.imgPhoto);
             imgLike = itemView.findViewById(R.id.imgLike);
+
+            imgLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 메인액티비티에 함수 만들어 놓고
+                    // 그 함수 호출하자.
+                    int index = getAdapterPosition();
+                    ((PostingListActivity)context).setLike(index);
+                }
+            });
 
         }
     }

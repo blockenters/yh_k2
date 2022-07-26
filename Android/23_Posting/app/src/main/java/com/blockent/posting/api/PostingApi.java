@@ -6,11 +6,13 @@ import com.blockent.posting.model.PostingList;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PostingApi {
@@ -33,6 +35,15 @@ public interface PostingApi {
     Call<PostingList> getFollowPosting(@Header("Authorization") String token,
                                        @Query("offset") int offset,
                                        @Query("limit") int limit);
+
+    // 해당 포스팅에 좋아요 하는 API
+    @POST("/like/{postingId}")
+    Call<PostRes> setLike(@Header("Authorization") String token,
+                          @Path("postingId") int postingId);
+
+    @DELETE("/like/{postingId}")
+    Call<PostRes> unsetLike(@Header("Authorization") String token,
+                            @Path("postingId") int postingId);
 
 }
 
