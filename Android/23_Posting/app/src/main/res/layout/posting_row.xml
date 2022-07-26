@@ -43,6 +43,13 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="18sp" />
+
+                <TextView
                     android:id="@+id/txtCreatedAt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,12 +71,6 @@
                     android:layout_margin="10dp"
                     app:srcCompat="@drawable/ic_thumb_up_off" />
 
-                <ImageView
-                    android:id="@+id/imgDelete"
-                    android:src="@drawable/ic_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
