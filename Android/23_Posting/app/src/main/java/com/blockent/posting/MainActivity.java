@@ -2,6 +2,9 @@ package com.blockent.posting;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,11 +15,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
+import com.blockent.posting.adapter.MyPostingAdapter;
 import com.blockent.posting.api.NetworkClient;
 import com.blockent.posting.api.UserApi;
 import com.blockent.posting.config.Config;
+import com.blockent.posting.model.Posting;
 import com.blockent.posting.model.UserRes;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +34,10 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     Button btnAdd;
+    RecyclerView recyclerView;
+    MyPostingAdapter adapter;
+    ArrayList<Posting> postingList = new ArrayList<>();
+    ProgressBar progressBar;
 
     private ProgressDialog dialog;
 
@@ -47,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         btnAdd = findViewById(R.id.btnAdd);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        progressBar = findViewById(R.id.progressBar);
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        
 
     }
 
