@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 액션바 숨기는 코드
 //        getSupportActionBar().hide();
-
+        getSupportActionBar().setTitle("홈");
         navigationView = findViewById(R.id.bottomNavigationView);
 
         firstFragment = new FirstFragment();
@@ -48,8 +48,15 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().show();
                 } else if(itemId == R.id.secondFragment){
                     fragment = secondFragment;
+
+                    getSupportActionBar().setTitle("친구");
+                    getSupportActionBar().show();
+                    
                 } else if(itemId == R.id.thirdFragment){
                     fragment = thirdFragment;
+
+                    getSupportActionBar().hide();
+
                 }
                 return loadFragment(fragment);
             }
