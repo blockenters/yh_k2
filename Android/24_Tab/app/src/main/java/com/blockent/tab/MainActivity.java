@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 액션바 숨기는 코드
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         navigationView = findViewById(R.id.bottomNavigationView);
 
@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(itemId == R.id.firstFragment){
                     fragment = firstFragment;
+                    getSupportActionBar().setTitle("홈");
+                    getSupportActionBar().show();
                 } else if(itemId == R.id.secondFragment){
                     fragment = secondFragment;
                 } else if(itemId == R.id.thirdFragment){
