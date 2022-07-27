@@ -16,6 +16,7 @@ import com.blockent.posting.adapter.MyPostingAdapter;
 import com.blockent.posting.api.NetworkClient;
 import com.blockent.posting.api.PostingApi;
 import com.blockent.posting.config.Config;
+import com.blockent.posting.model.PostRes;
 import com.blockent.posting.model.Posting;
 import com.blockent.posting.model.PostingList;
 
@@ -38,6 +39,9 @@ public class PostingListActivity extends AppCompatActivity {
     int count = 0;
     int offset = 0;
     int limit = 8;
+    
+    // 좋아요 눌렀을때 선택된 포스팅 정보
+    private Posting selectedPosting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,10 +165,10 @@ public class PostingListActivity extends AppCompatActivity {
 
         Log.i("aaaaa", "thumb img click, index : "+index);
 
-        Posting posting = postingList.get(index);
+        selectedPosting = postingList.get(index);
 
         // 포스팅 아이디가 들어있다.
-        int postingId = posting.getId();
+        int postingId = selectedPosting.getId();
 
         SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCES_NAME, MODE_PRIVATE);
         String accessToken = sp.getString("accessToken", "");
@@ -172,17 +176,50 @@ public class PostingListActivity extends AppCompatActivity {
         Retrofit retrofit = NetworkClient.getRetrofitClient(PostingListActivity.this);
         PostingApi api = retrofit.create(PostingApi.class);
 
-        int isLike = posting.getIsLike();
-        
+        int isLike = selectedPosting.getIsLike();
+
+        Call<PostRes> call;
         if(isLike == 0){
             // setLike API 를 호출
-
+            call = api.setLike("Bearer "+accessToken, selectedPosting.getId());
 
         } else {
             // unsetLike API 를 호출
-
-
+            call = api.unsetLike("Bearer "+accessToken, selectedPosting.getId());
         }
+
+        call.enqueue(new Callback<PostRes>() {
+            @Override
+            public void onResponse(Call<PostRes> call, Response<PostRes> response) {
+                // 서버에 반영이 잘 된것이다.
+                // 따라서, 화면에 보여주는 방식은 2가지 방식이 있는데,
+                // 기획에 따라서 선택하면 된다.
+                if(response.isSuccessful()){
+                    // 첫번째 방법은, 전체 데이터를 다시 가져오는 방법!
+//                    getNetworkData();
+                    // 두번째 방법은, 서버에는 반영이 되어있으니까, 클라이언트쪽만 따로
+                    //              바뀐부분을 반영해 주는 방법!
+
+                    if(selectedPosting.getIsLike() == 0 ){
+                        selectedPosting.setIsLike(1);
+                        selectedPosting.setLikeCnt(selectedPosting.getLikeCnt() + 1);
+                    } else {
+                        selectedPosting.setIsLike(0);
+                        selectedPosting.setLikeCnt(selectedPosting.getLikeCnt() - 1);
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostRes> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }
