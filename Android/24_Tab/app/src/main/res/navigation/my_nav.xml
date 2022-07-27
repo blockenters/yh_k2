@@ -2,8 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_nav">
+    android:id="@+id/my_nav"
+    app:startDestination="@id/firstFragment">
 
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.blockent.tab.FirstFragment"
+        android:label="첫번째"
+        tools:layout="@layout/fragment_first"  />
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.blockent.tab.SecondFragment"
+        android:label="두번째"
+        tools:layout="@layout/fragment_second" />
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.blockent.tab.ThirdFragment"
+        android:label="세번째"
+        tools:layout="@layout/fragment_third" />
 
 
 </navigation>
