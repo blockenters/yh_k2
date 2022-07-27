@@ -3,12 +3,27 @@ package com.blockent.movieapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+
+import com.blockent.movieapp.adapter.MovieAdapter;
+import com.blockent.movieapp.api.MovieApi;
+import com.blockent.movieapp.api.NetworkClient;
+import com.blockent.movieapp.model.Movie;
+import com.blockent.movieapp.model.MovieList;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +44,17 @@ public class FirstFragment extends Fragment {
 
     RecyclerView recyclerView;
     // 어댑터, 어레이리스트
+    MovieAdapter adapter;
+    ArrayList<Movie> movieList = new ArrayList<>();
 
     ProgressBar progressBar;
+    Button btnCnt;
+    Button btnAvg;
+
+    // 페이징 처리를 위한 멤버변수
+    int count = 0;
+    int offset = 0;
+    int limit = 25;
 
 
     public FirstFragment() {
@@ -68,6 +92,69 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_first, container, false);
+
+        progressBar = rootView.findViewById(R.id.progressBar);
+        btnCnt = rootView.findViewById(R.id.btnCnt);
+        btnAvg = rootView.findViewById(R.id.btnAvg);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // 네트워크를 통해서 데이터 가져온다.
+        getNetworkData();
+
+        return rootView;
+    }
+
+    private void getNetworkData() {
+        movieList.clear();
+        count = 0;
+        offset = 0;
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(getContext());
+        MovieApi api = retrofit.create(MovieApi.class);
+
+        Call<MovieList> call = api.getMovieList(offset, limit, "cnt");
+
+        call.enqueue(new Callback<MovieList>() {
+            @Override
+            public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if(response.isSuccessful()){
+
+                    count = response.body().getCount();
+
+                    movieList.addAll( response.body().getItems() );
+
+                    offset = offset + count;
+
+                    adapter = new MovieAdapter(getActivity(), movieList);
+
+                    recyclerView.setAdapter(adapter);
+
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieList> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+
     }
 }
+
+
+
+
+
+
+
+
