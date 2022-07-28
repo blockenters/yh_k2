@@ -2,10 +2,13 @@ package com.blockent.movieapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,6 +106,23 @@ public class SecondFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                int totalCount = recyclerView.getAdapter().getItemCount();
+
+                if( (lastPosition + 1) == totalCount){
+                    if(count == limit) {
+                        // 네트워크 통해서, 데이터를 더 불러오면 된다.
+                        addNetworkData();
+                    }
+                }
+            }
+        });
+
         imgSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +134,69 @@ public class SecondFragment extends Fragment {
             }
         });
 
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if( charSequence.length() == 0 ){
+                    keyword = "";
+                    getNetworkData();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        keyword = "";
+        getNetworkData();
+
         return rootView;
+    }
+
+    private void addNetworkData() {
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(getContext());
+        MovieApi api = retrofit.create(MovieApi.class);
+
+        Call<MovieList> call = api.searchMovieList(keyword, offset, limit);
+
+        call.enqueue(new Callback<MovieList>() {
+            @Override
+            public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if(response.isSuccessful()){
+
+                    count = response.body().getCount();
+
+                    movieList.addAll( response.body().getItems() );
+
+                    offset = offset + count;
+
+                    adapter.notifyDataSetChanged();
+
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieList> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+
+
     }
 
     private void getNetworkData() {
