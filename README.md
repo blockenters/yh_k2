@@ -182,7 +182,7 @@ https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
 
 - 탭바 구현 : https://docs.google.com/presentation/d/16VXfXSDY_mBRkJOXHKTN22TGLO0ZBjQCaJ4JYt4qSAQ/edit?usp=sharing
 
-- 구글맵 공식 페이지 : https://developers.google.com/maps/documentation/android-sdk/start?hl=ko#create-project
+- 구글맵 공식 페이지 : https://developers.google.com/maps/documentation/android-sdk/config?hl=ko
  
 - 구글맵 서비스를 위한 설정 방법 블로그 : https://webnautes.tistory.com/647
 
