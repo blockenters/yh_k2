@@ -1,6 +1,7 @@
 package com.blockent.movieapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blockent.movieapp.R;
+import com.blockent.movieapp.ReviewListActivity;
 import com.blockent.movieapp.model.Movie;
 
 import java.util.List;
@@ -61,6 +63,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtCnt = itemView.findViewById(R.id.txtCnt);
             txtAvg = itemView.findViewById(R.id.txtAvg);
+
+            txtCnt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 1. 어떤 영화를 선택했는지 정보를 가져온다.
+                    int index = getAdapterPosition();
+                    Movie movie = movieList.get(index);
+
+                    // 2. 리뷰를 보여주는 액티비티에, 위의 영화정보를 넘겨준다.
+                    Intent intent = new Intent(context, ReviewListActivity.class);
+                    intent.putExtra("movie",movie);
+
+                    context.startActivity(intent);
+
+                }
+            });
+            txtAvg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 위의 함수 다 만들고 나서 만들면 된다.
+                }
+            });
 
         }
     }
