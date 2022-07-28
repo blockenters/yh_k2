@@ -109,8 +109,6 @@ public class RegisterActivity extends AppCompatActivity {
                             editor.putString("accessToken", accessToken);
                             editor.apply();
 
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
 
                             finish();
 
@@ -129,6 +127,15 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

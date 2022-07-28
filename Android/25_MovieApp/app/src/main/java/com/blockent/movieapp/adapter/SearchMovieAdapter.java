@@ -2,6 +2,7 @@ package com.blockent.movieapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blockent.movieapp.R;
+import com.blockent.movieapp.RegisterActivity;
+import com.blockent.movieapp.ReviewAddActivity;
 import com.blockent.movieapp.ReviewListActivity;
+import com.blockent.movieapp.config.Config;
 import com.blockent.movieapp.model.Movie;
 
 import java.util.List;
@@ -68,7 +72,27 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo : 리뷰 작성하는 액티비티 실행!!!!
+
+                    // 로그인 유무 체크
+                    SharedPreferences sp = context.getSharedPreferences(Config.PREFERENCES_NAME, Context.MODE_PRIVATE);
+                    String accessToken = sp.getString("accessToken", "");
+
+                    if(accessToken.isEmpty()){
+
+                        Intent intent = new Intent(context, RegisterActivity.class);
+                        context.startActivity(intent);
+
+                    }else{
+                        // 리뷰 작성하는 액티비티 실행!!!!
+                        int index = getAdapterPosition();
+                        Movie movie = movieList.get(index);
+
+                        Intent intent = new Intent(context, ReviewAddActivity.class);
+                        intent.putExtra("movie", movie);
+
+                        context.startActivity(intent);
+                    }
+
                 }
             });
 
