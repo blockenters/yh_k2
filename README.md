@@ -186,6 +186,10 @@ https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
  
 - 구글맵 서비스를 위한 설정 방법 블로그 : https://webnautes.tistory.com/647
 
+- 위치기반 실습1 : https://docs.google.com/presentation/d/1-6sKk0eICCjfmejyLGe6Kw_bfOP9l17BEUyz48vmE74/edit?usp=sharing
+
+- 위치기반 실습2 : https://docs.google.com/presentation/d/13PAODc16my9K_qOU-Xs4N7QASkDXCR6jN3hmtEwk0-E/edit?usp=sharing
+
 ---
 
 ## 코랩 환경 셋팅 
