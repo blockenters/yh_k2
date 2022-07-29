@@ -19,6 +19,7 @@ public interface ReviewApi {
                                    @Query("offset") int offset,
                                    @Query("limit") int limit);
 
+    // 리뷰 남기는 API
     @POST("/rating")
     Call<PostRes> addReview(@Header("Authorization") String token,
                             @Body ReviewAddReq reviewAddReq);
